@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kalkulator - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --primary:#2b3a66;
+      --primary-dark:#1f2b4a;
+      --primary-light:#3f4d7c;
+      --primary-soft:#dbe4ff;
+    }
+    body{
+      background:linear-gradient(180deg,#eaf6ff 0%,#f7fdff 100%);
+      font-family:Inter,system-ui;
+      color:#0f172a;
+    }
+    .site-header{
+      background:var(--primary);
+      color:white;
+    }
+    .container{max-width:980px; margin:2.25rem auto; padding:1.25rem;}
+    a.nav-link{color:white; padding:.5rem 1rem; border-radius:.375rem;}
+    a.nav-link:hover{background:rgba(255,255,255,.06);}
+    a.nav-link.active{
+      background-color: rgba(255,255,255,0.2);
+      font-weight: 600;
+      box-shadow: inset 0 -3px 0 var(--primary-dark);
+    }
+
+    /* Kalkulator Styles */
+    .calc-shell{
+      width:360px;
+      max-width:92%;
+      margin:1.5rem auto;
+      background:rgba(43,58,102,0.65);
+      border-radius:14px;
+      padding:28px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.18);
+      border:3px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(4px);
+    }
+    .display{
+      background:#ffffff;
+      height:70px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:0 18px;
+      font-size:30px;
+      font-weight:800;
+      color:#2b3a66;
+      margin-bottom:24px;
+      border:2px solid rgba(43,58,102,0.25);
+    }
+    .btn-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .calc-btn{
+      height:72px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:20px;
+      cursor:pointer;
+      user-select:none;
+      border:2px solid rgba(255,255,255,0.55);
+      background:var(--primary-soft);
+      color:#1a2240;
+    }
+    .calc-btn.operator{
+      background:var(--primary-light);
+      color:white;
+      border-color:rgba(255,255,255,0.45);
+    }
+    .calc-btn#clear{
+      background:#ffeded;
+      color:#b40000;
+      border-color:#ffd4d4;
+    }
+    .calc-btn.large#equals{
+      grid-column:1 / -1;
+      height:70px;
+      font-size:24px;
+      background:var(--primary);
+      color:white;
+      border-color:rgba(255,255,255,0.7);
+    }
+    .marquee-box{
+      margin-top:18px;
+      background:rgba(255,255,255,0.25);
+      border-radius:8px;
+      padding:6px;
+      font-weight:600;
+      font-size:14px;
+      color:white;
+      text-shadow:0 1px 2px rgba(0,0,0,0.4);
+      border:1px solid rgba(255,255,255,0.28);
+    }
+    @media (max-width:420px){
+      .calc-shell{padding:18px;}
+      .display{font-size:22px;height:56px;}
+      .calc-btn{height:60px;}
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container flex items-center justify-between">
+    <h1 class="text-2xl font-extrabold">Portfolio - Gavril Ziro Karna</h1>
+    <nav class="space-x-2">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">Tentang</a>
+      <a class="nav-link" href="gallery.html">Galeri</a>
+      <a class="nav-link active" href="calculator.html">Kalkulator</a>
+      <a class="nav-link" href="register.html">Pendaftaran</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="mt-8 flex justify-center">
+    <div class="calc-shell">
+      <div class="display" id="display">0</div>
+      <div class="btn-grid" id="buttons">
+        <div class="calc-btn" data-val="7">7</div>
+        <div class="calc-btn" data-val="8">8</div>
+        <div class="calc-btn" data-val="9">9</div>
+        <div class="calc-btn operator" data-val="/">/</div>
+
+        <div class="calc-btn" data-val="4">4</div>
+        <div class="calc-btn" data-val="5">5</div>
+        <div class="calc-btn" data-val="6">6</div>
+        <div class="calc-btn operator" data-val="*">*</div>
+
+        <div class="calc-btn" data-val="1">1</div>
+        <div class="calc-btn" data-val="2">2</div>
+        <div class="calc-btn" data-val="3">3</div>
+        <div class="calc-btn operator" data-val="-">-</div>
+
+        <div class="calc-btn" data-val="0">0</div>
+        <div class="calc-btn" data-val=".">.</div>
+        <div class="calc-btn" id="clear">C</div>
+        <div class="calc-btn operator" data-val="+">+</div>
+
+        <div class="calc-btn large" id="equals">=</div>
+      </div>
+      <div class="marquee-box">
+        <marquee>Aplikasi dibuat oleh Gavril Ziro Karna 2482008</marquee>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="container text-center py-6 text-gray-600">
+  &copy; 2025 Gavril Ziro Karna - NIM 2482008
+</footer>
+
+<script>
+(function(){
+  const display = document.getElementById('display');
+  const buttons = document.getElementById('buttons');
+  let expr = '';
+
+  function updateDisplay(){
+    display.textContent = expr === '' ? '0' : expr;
+  }
+
+  buttons.addEventListener('click', function(e){
+    const btn = e.target.closest('.calc-btn'); 
+    if(!btn) return;
+    const val = btn.getAttribute('data-val');
+
+    if(btn.id === 'clear'){
+      expr = '';
+      updateDisplay();
+      return;
+    }
+
+    if(btn.id === 'equals'){
+      if(!/^[0-9+\-*/().\s]+$/.test(expr) || expr.trim()===''){
+        alert('Ekspresi tidak valid');
+        return;
+      }
+      try {
+        const result = Function('"use strict";return ('+expr+')')();
+        expr = String(result);
+        updateDisplay();
+      } catch(err){
+        alert('Terjadi kesalahan perhitungan.');
+      }
+      return;
+    }
+
+    if(val === '.'){
+      const parts = expr.split(/[^0-9.]/);
+      const last = parts[parts.length-1];
+      if(last.includes('.')) return;
+      expr += '.';
+    } else {
+      expr += val;
+    }
+    updateDisplay();
+  });
+
+  document.addEventListener('keydown', function(ev){
+    const allowed = '0123456789+-*/().';
+
+    if(allowed.includes(ev.key)){
+      expr += ev.key;
+      updateDisplay();
+    }
+    else if(ev.key === 'Enter'){
+      document.getElementById('equals').click();
+    }
+    else if(ev.key === 'Backspace'){
+      expr = expr.slice(0,-1);
+      updateDisplay();
+    }
+    else if(ev.key.toLowerCase() === 'c'){
+      expr = '';
+      updateDisplay();
+    }
+  });
+})();
+</script>
+</body>
+</html>

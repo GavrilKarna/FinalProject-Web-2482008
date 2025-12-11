@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galeri - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --primary:#2b3a66;
+      --primary-dark:#1f2b4a;
+    }
+    body{
+      background:linear-gradient(180deg,#eaf6ff 0%,#f7fdff 100%);
+      font-family:Inter,system-ui;
+      color:#0f172a;
+    }
+    .site-header{background:var(--primary); color:white;}
+    .container{max-width:980px; margin:2.25rem auto; padding:1.25rem;}
+    a.nav-link{color:white; padding:.5rem 1rem; border-radius:.375rem;}
+    a.nav-link:hover{background:rgba(255,255,255,.06);}
+    a.nav-link.active{
+      background-color: rgba(255,255,255,0.2);
+      font-weight: 600;
+      box-shadow: inset 0 -3px 0 var(--primary-dark);
+    }
+    .card{
+      border-radius:.75rem;
+      overflow:hidden;
+      background:white;
+      box-shadow:0 4px 6px rgba(0,0,0,.1);
+      transition: transform .2s;
+    }
+    .card:hover{transform: translateY(-5px);}
+    .card img{width:100%; height:200px; object-fit:cover;}
+    .card-body{padding:1rem;}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container flex items-center justify-between">
+    <h1 class="text-2xl font-extrabold">Portfolio - Gavril Ziro Karna</h1>
+    <nav class="space-x-2">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">Tentang</a>
+      <a class="nav-link active" href="gallery.html">Galeri</a>
+      <a class="nav-link" href="calculator.html">Kalkulator</a>
+      <a class="nav-link" href="register.html">Pendaftaran</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">Galeri / Portofolio</h2>
+    <p class="text-gray-700 mb-6">Gambar yang berhubungan dengan jurusan saya. Setiap item menampilkan deskripsi singkat.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="Fotoga1.webp" alt="Proyek 1">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Business Analyste</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 1</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="Fotoga2.png" alt="Proyek 2">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Requirement Elicitation</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 2</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="Fotoga3.png" alt="Proyek 3">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Requirement Analysis & Documentation</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 3</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card">
+        <img src="Fotoga4.webp" alt="Proyek 4">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Business Process Analysis & Improvement</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 4</p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card">
+        <img src="Fotoga5.png" alt="Proyek 5">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Solution Design Collaboration</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 5</p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card">
+        <img src="Fotoga6.png" alt="Proyek 6">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Requirement Validation & Verification</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 6</p>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card">
+        <img src="Fotoga7.webp" alt="Proyek 7">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">UAT Support (User Acceptance Testing)</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 7</p>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card">
+        <img src="Fotoga8.png"alt="Proyek 8">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Stakeholder Management</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 8</p>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="card">
+        <img src="Fotoga9.webp" alt="Proyek 9">
+        <div class="card-body">
+          <h3 class="font-semibold text-lg">Change Management</h3>
+          <p class="text-gray-600 text-sm mt-1">Picture 9</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="container text-center py-6 text-gray-600">
+  &copy; 2025 Gavril Ziro Karna - NIM 2482008
+</footer>
+</body>
+</html>

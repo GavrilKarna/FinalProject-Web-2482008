@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pendaftaran - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--primary:#2b3a66;}
+    body{
+      background:linear-gradient(180deg,#eaf6ff 0%,#f7fdff 100%);
+      font-family:Inter,system-ui;
+      color:#0f172a;
+    }
+    .site-header{background:var(--primary); color:white;}
+    .container{max-width:980px; margin:2.25rem auto; padding:1.25rem;}
+    a.nav-link{color:white; padding:.5rem 1rem; border-radius:.375rem;}
+    a.nav-link:hover{background:rgba(255,255,255,.06);}
+    a.nav-link.active{
+      background-color: rgba(255,255,255,0.2);
+      font-weight: 600;
+      box-shadow: inset 0 -3px 0 #1f2b4a;
+    }
+    input,button{font-family:inherit;}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container flex items-center justify-between">
+    <h1 class="text-2xl font-extrabold">Portfolio - Gavril Ziro Karna</h1>
+    <nav class="space-x-2">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">Tentang</a>
+      <a class="nav-link" href="gallery.html">Galeri</a>
+      <a class="nav-link" href="calculator.html">Kalkulator</a>
+      <a class="nav-link active" href="register.html">Pendaftaran</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="mt-8 p-6 bg-white rounded-xl shadow">
+    <h2 class="text-2xl font-bold mb-4">Form Pendaftaran</h2>
+    <form id="regForm" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium">Nama Depan</label>
+          <input id="first" maxlength="40" required class="mt-1 block w-full border rounded p-2" />
+          <p class="text-xs text-gray-500 mt-1">Masukkan teks, maksimal 40 karakter.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Nama Belakang</label>
+          <input id="last" maxlength="40" required class="mt-1 block w-full border rounded p-2" />
+          <p class="text-xs text-gray-500 mt-1">Masukkan teks, maksimal 40 karakter.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium">NIM</label>
+          <input id="nim" maxlength="7" required inputmode="numeric" class="mt-1 block w-full border rounded p-2" />
+          <p class="text-xs text-gray-500 mt-1">Input numerik, maksimal 7 digit.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Nomor Telepon</label>
+          <input id="phone" maxlength="15" required inputmode="numeric" class="mt-1 block w-full border rounded p-2" />
+          <p class="text-xs text-gray-500 mt-1">Input numerik, panjang 7-15 digit.</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Email (@unai.edu)</label>
+        <input id="email" required class="mt-1 block w-full border rounded p-2" />
+        <p class="text-xs text-gray-500 mt-1">Wajib berekstensi @unai.edu</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Kata Sandi</label>
+        <input id="password" type="password" required maxlength="16" minlength="8" class="mt-1 block w-full border rounded p-2" />
+        <p class="text-xs text-gray-500 mt-1">
+          8-16 karakter, setidaknya 1 huruf besar, 1 huruf kecil, dan 1 angka. Tidak boleh simbol.
+        </p>
+      </div>
+
+      <div>
+        <button type="submit" class="px-4 py-2 bg-[#2b3a66] text-white rounded">Kirim</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="container text-center py-6 text-gray-600">
+  &copy; 2025 Gavril Ziro Karna - NIM 2482008
+</footer>
+
+<script>
+(function(){
+  const form = document.getElementById('regForm');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const first = document.getElementById('first').value.trim();
+    const last = document.getElementById('last').value.trim();
+    const nim = document.getElementById('nim').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const pwd = document.getElementById('password').value;
+
+    if(first.length === 0 || first.length > 40){
+      alert('Nama Depan harus diisi dan maksimal 40 karakter.');
+      return;
+    }
+
+    if(last.length === 0 || last.length > 40){
+      alert('Nama Belakang harus diisi dan maksimal 40 karakter.');
+      return;
+    }
+
+    if(!/^[0-9]{1,7}$/.test(nim)){
+      alert('NIM harus numerik dan maksimal 7 digit.');
+      return;
+    }
+
+    if(!/^[0-9]{7,15}$/.test(phone)){
+      alert('Nomor telepon harus numerik dan panjang 7-15 digit.');
+      return;
+    }
+
+    if(!/^[A-Za-z0-9._%+-]+@unai\.edu$/.test(email)){
+      alert('Email harus berekstensi @unai.edu dan format valid.');
+      return;
+    }
+
+    if(!/^[A-Za-z0-9]{8,16}$/.test(pwd)){
+      alert('Kata sandi hanya boleh huruf dan angka, 8-16 karakter.');
+      return;
+    }
+
+    if(!/[A-Z]/.test(pwd)){
+      alert('Kata sandi harus mengandung minimal 1 huruf besar.');
+      return;
+    }
+
+    if(!/[a-z]/.test(pwd)){
+      alert('Kata sandi harus mengandung minimal 1 huruf kecil.');
+      return;
+    }
+
+    if(!/[0-9]/.test(pwd)){
+      alert('Kata sandi harus mengandung minimal 1 angka.');
+      return;
+    }
+
+    alert('Pendaftaran Berhasil');
+    form.reset();
+  });
+})();
+</script>
+
+</body>
+</html>
